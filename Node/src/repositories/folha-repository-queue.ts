@@ -13,7 +13,6 @@ export class FolhaRepositoryQueue {
 
         setTimeout(function() {
             channel.close
-            process.exit(0)
             }, 500);
     }
 

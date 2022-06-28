@@ -30,7 +30,10 @@ export class FolhaPagamentoController {
     await server.start();
 
     await server.publishInQueue('mensagem', JSON.stringify(folhas));
+
+    return response.status(200).json(folhas)
   }
+  
 
 }
 
