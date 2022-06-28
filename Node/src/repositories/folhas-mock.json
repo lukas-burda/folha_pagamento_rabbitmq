@@ -1,0 +1,32 @@
+[
+  {
+    "mes": 1,
+    "ano": 1,
+    "horas": 100,
+    "valor": 50,
+    "bruto": 5000,
+    "irrf": 505.2,
+    "inss": 550,
+    "fgts": 400,
+    "liquido": 3944.8,
+    "funcionario": {
+      "nome": "Diogo",
+      "cpf": "123.456.789-10"
+    }
+  },
+  {
+    "mes": 2,
+    "ano": 1,
+    "horas": 100,
+    "valor": 20,
+    "bruto": 2000,
+    "irrf": 7.2,
+    "inss": 180,
+    "fgts": 160,
+    "liquido": 1812.8,
+    "funcionario": {
+      "nome": "Diogo",
+      "cpf": "123.456.789-10"
+    }
+  }
+]
