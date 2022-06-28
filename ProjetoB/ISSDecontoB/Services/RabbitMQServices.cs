@@ -33,20 +33,22 @@ namespace ISSDecontoB.Services
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
-                    folhas = JsonConvert.DeserializeObject<List<Folha>>(message);
+                    folhas = this.ConsumirMessage(message);
                 };
 
                 channel.BasicConsume(queue: "mensagem",
                                      autoAck: true,
                                      consumer: consumer);
-
-                foreach (var item in folhas)
-                {
-                    var a = item;
-                }
-
-                return folhas;
             }
+
+            folhas.Add(folha);
+
+            return folhas;
+        }
+
+        public List<Folha> ConsumirMessage(string mensagem)
+        {
+            return JsonConvert.DeserializeObject<List<Folha>>(mensagem);
         }
     }
 }
