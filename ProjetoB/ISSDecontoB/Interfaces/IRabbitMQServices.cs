@@ -9,5 +9,7 @@ namespace ISSDecontoB.Interfaces
     public interface IRabbitMQServices
     {
         public List<Folha> ConsumirQueue();
+        public double TotalFolhas(List<Folha> folhas);
+        public double MediaFolhas(List<Folha> folhas);
     }
 }

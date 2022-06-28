@@ -1,4 +1,5 @@
-﻿using ISSDecontoB.Interfaces;
+﻿using ISSDecontoB.Application;
+using ISSDecontoB.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -32,14 +33,32 @@ namespace ISSDecontoB.Controllers
 
         [HttpGet]
         [Route("total")]
-        public async void Total()
+        public IActionResult Total()
         {
+            try
+            {
+                return Ok(_services.TotalFolhas(_services.ConsumirQueue()));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
         }
 
         [HttpGet]
         [Route("media")]
-        public async void Media()
+        public IActionResult Media()
         {
+            try
+            {
+                return Ok(_services.MediaFolhas(_services.ConsumirQueue()));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
         }
 
     }

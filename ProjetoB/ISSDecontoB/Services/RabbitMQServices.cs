@@ -16,8 +16,7 @@ namespace ISSDecontoB.Services
         public List<Folha> ConsumirQueue()
         {
             List<Folha> folhas = new List<Folha>();
-            Folha folha = new();
-
+            
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -37,11 +36,10 @@ namespace ISSDecontoB.Services
                 };
 
                 channel.BasicConsume(queue: "mensagem",
-                                     autoAck: true,
+                                     autoAck: false,
                                      consumer: consumer);
+                connection.Close();
             }
-
-            folhas.Add(folha);
 
             return folhas;
         }
@@ -50,5 +48,26 @@ namespace ISSDecontoB.Services
         {
             return JsonConvert.DeserializeObject<List<Folha>>(mensagem);
         }
+
+        public double TotalFolhas(List<Folha> folhas)
+        {
+            var total = 0.0;
+
+            foreach (var item in folhas)
+            {
+                total += item.bruto;
+            }
+
+            return total;
+        }
+
+
+        public double MediaFolhas(List<Folha> folhas)
+        {
+            var total = TotalFolhas(folhas);
+
+            return total / folhas.Count();
+        }
+
     }
 }
